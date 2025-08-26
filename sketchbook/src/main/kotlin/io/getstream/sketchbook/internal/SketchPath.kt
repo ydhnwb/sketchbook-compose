@@ -20,7 +20,7 @@ import androidx.compose.ui.graphics.Paint
 import androidx.compose.ui.graphics.Path
 
 /** Wrapper class to contain [Path] and [Paint]. */
-internal data class SketchPath(
+public data class SketchPath(
     val path: Path,
     val paint: Paint
 )
