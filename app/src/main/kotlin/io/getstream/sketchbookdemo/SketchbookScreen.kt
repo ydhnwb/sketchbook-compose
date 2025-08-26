@@ -19,6 +19,8 @@ package io.getstream.sketchbookdemo
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.Button
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -33,7 +35,15 @@ fun SketchbookScreen(
     modifier: Modifier,
     controller: SketchbookController
 ) {
+
+
+
     Box(modifier = modifier) {
+        Button(onClick = {
+            println(controller.drawPaths)
+        }) {
+            Text("Show draw paths value")
+        }
         Image(
             modifier = Modifier
                 .matchParentSize()

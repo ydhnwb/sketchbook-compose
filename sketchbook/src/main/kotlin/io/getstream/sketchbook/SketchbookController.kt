@@ -105,7 +105,11 @@ public class SketchbookController {
     public val isEraseMode: State<Boolean> = _isEraseMode
 
     /** Stack of the drawn [Path]s. */
-    internal val drawPaths = Stack<SketchPath>()
+    private val _drawPaths = Stack<SketchPath>()
+
+    /** Expose read-only list of paths */
+    public val drawPaths: List<SketchPath>
+        get() = _drawPaths.toList()
 
     /** Stack of the redo [Path]s. */
     private val redoPaths = Stack<SketchPath>()
@@ -198,12 +202,12 @@ public class SketchbookController {
 
     /** Draws a [Path] with the current [Paint]. */
     public fun addDrawPath(path: Path) {
-        drawPaths.add(SketchPath(path, Paint().copy(currentPaint)))
+        _drawPaths.add(SketchPath(path, Paint().copy(currentPaint)))
     }
 
     /** Draws a [Path] with the current [Paint]. */
     public fun addDrawPath(path: Path, paint: Paint) {
-        drawPaths.add(SketchPath(path, Paint().copy(paint)))
+        _drawPaths.add(SketchPath(path, Paint().copy(paint)))
     }
 
     internal fun clearRedoPath() {
@@ -218,7 +222,7 @@ public class SketchbookController {
     /** Executes undo the drawn path if possible. */
     public fun undo() {
         if (canUndo.value) {
-            redoPaths.push(drawPaths.pop())
+            redoPaths.push(_drawPaths.pop())
             reviseTick.value++
             updateRevised()
         }
@@ -227,7 +231,7 @@ public class SketchbookController {
     /** Executes redo the drawn path if possible. */
     public fun redo() {
         if (canRedo.value) {
-            drawPaths.push(redoPaths.pop())
+            _drawPaths.push(redoPaths.pop())
             reviseTick.value++
             updateRevised()
         }
@@ -258,7 +262,7 @@ public class SketchbookController {
 
     /** Clear the drawn paths and redo paths on canvas.. */
     public fun clearPaths() {
-        drawPaths.clear()
+        _drawPaths.clear()
         redoPaths.clear()
         updateRevised()
         reviseTick.value++
