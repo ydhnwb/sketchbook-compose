@@ -22,6 +22,18 @@
 
 <a href="https://getstream.io/chat/compose/tutorial/?utm_source=Github&utm_campaign=Devrel_oss&utm_medium=sketchbook"><img src="https://user-images.githubusercontent.com/24237865/138428440-b92e5fb7-89f8-41aa-96b1-71a5486c5849.png" align="right" width="13%"/></a>
 
+## August 27 addition
+drawPaths are now exposed, for this change, i suggest you to build your own .aar file using `.\gradlew :sketchbook:assembleRelease` and copy the sketchbook-release.aar 
+into your \app\libs\here of your new project.  
+
+Implement it like this:  
+
+```
+implementation(files("libs/sketchbook-release.aar"))
+```
+
+and sync gradle
+
 ## Contribution 💙
 
 Sketchbook is maintained by __[Stream](https://getstream.io/)__.
