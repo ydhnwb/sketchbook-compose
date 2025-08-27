@@ -22,7 +22,27 @@
 
 <a href="https://getstream.io/chat/compose/tutorial/?utm_source=Github&utm_campaign=Devrel_oss&utm_medium=sketchbook"><img src="https://user-images.githubusercontent.com/24237865/138428440-b92e5fb7-89f8-41aa-96b1-71a5486c5849.png" align="right" width="13%"/></a>
 
-## August 27 addition
+## Modify addDrawPath and triggerTick: August 27 addition
+If you use default `addDrawPath` it will not rerender.  You should use new function called `addDrawPathBulk`  
+with parameter of `paths: List<SketchPatch>` , after doing that manually trigger the recompose with `triggerTick`
+
+example:  
+```
+val readed = readJsonFromStorage("sketch_project.json")                        
+val sketchPaths = mutableListOf<SketchPath>()
+
+readed.forEach { rowData ->
+    val pathAndPaint = rowData.toPathAndPaint()
+    val sketchPath = SketchPath(pathAndPaint.first, pathAndPaint.second)
+    sketchPaths.add(sketchPath)
+}
+
+controller.addDrawPathBulk(sketchPaths)
+controller.triggerTick()
+```
+
+
+## Build the module yourself / generate jar or aar : August 27 addition
 drawPaths are now exposed, for this change, i suggest you to build your own .aar file using `.\gradlew :sketchbook:assembleRelease` and copy the sketchbook-release.aar 
 into your \app\libs\here of your new project.  
 

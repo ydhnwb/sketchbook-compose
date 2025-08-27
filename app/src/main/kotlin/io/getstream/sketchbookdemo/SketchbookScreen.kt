@@ -39,11 +39,7 @@ fun SketchbookScreen(
 
 
     Box(modifier = modifier) {
-        Button(onClick = {
-            println(controller.drawPaths)
-        }) {
-            Text("Show draw paths value")
-        }
+       
         Image(
             modifier = Modifier
                 .matchParentSize()
