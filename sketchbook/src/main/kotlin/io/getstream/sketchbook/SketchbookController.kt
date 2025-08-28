@@ -129,7 +129,7 @@ public class SketchbookController {
     internal val imageBitmapMatrix: MutableState<Matrix> = mutableStateOf(Matrix())
 
     internal var reviseTick = MutableStateFlow(0)
-    private val _redrawTrigger = mutableStateOf(false) // used to trigger recompose
+
 
     /** Sets a background color. */
     public fun setBackgroundColor(color: Color) {

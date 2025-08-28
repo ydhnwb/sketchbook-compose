@@ -39,7 +39,7 @@ fun SketchbookScreen(
 
 
     Box(modifier = modifier) {
-       
+
         Image(
             modifier = Modifier
                 .matchParentSize()
